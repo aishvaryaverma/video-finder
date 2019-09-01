@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import youtube from '../apis/youtube';
 import SearchBar from './SearchBar';
 import VideoList from './VideoList';
+import VideoDetails from './VideoDetails';
+
+// Styles added
+import './app.css';
 
 export class App extends Component {
     state = {
-        videos: []
+        videos: [],
+        selectedVideo: null
     }
 
     formSubmit = async term =>{
@@ -18,11 +23,16 @@ export class App extends Component {
         this.setState({ videos: res.data.items });
     }
 
+    onVideoSelect = video => {
+        this.setState({ selectedVideo: video })
+    }
+
     render() {
         return (
             <div className="ui container" style={{ marginTop: '10px' }}>
                 <SearchBar onTermSubmit={this.formSubmit} />
-                <VideoList videos={ this.state.videos } />
+                <VideoDetails video={this.state.selectedVideo} />
+                <VideoList onVideoSelect={this.onVideoSelect} videos={ this.state.videos } />
             </div>
         )
     }
