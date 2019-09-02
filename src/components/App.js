@@ -13,7 +13,7 @@ export class App extends Component {
         selectedVideo: null
     }
 
-    formSubmit = async term =>{
+    formSubmit = async term => {
         const res = await youtube.get('/search', {
             params: {
                 q: term
