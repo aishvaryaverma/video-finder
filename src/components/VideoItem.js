@@ -9,7 +9,6 @@ const VideoItem = ({ video, onVideoSelect }) => {
             <div className="content">
                 <div className="header">{title}</div>
             </div>
-
         </div>
     )
 }
